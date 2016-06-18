@@ -210,10 +210,15 @@ alias e="emacs &"
 alias g++="g++ -std=c++0x"
 alias imgls="${HOME}/.iterm/imgls"
 alias imgcat="${HOME}/.iterm/imgcat"
-alias ls="ls -G"
-alias sl="ls -G"
-alias la="ls -G -al"
+eval $(gdircolors ~/dircolors-solarized/dircolors.256dark)
+if [ -n "$LS_COLORS" ]; then
+    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+fi
+alias ls="gls --color"
+alias sl="gls --color"
+alias la="ls --color -al"
 
+export PATH="/bin/Bundler:/bin/Bundler/bin:$PATH"
 PYENV_ROOT="${HOME}/.pyenv"
 PATH=${PYENV_ROOT}/bin:$PATH
 eval "$(pyenv init -)"
