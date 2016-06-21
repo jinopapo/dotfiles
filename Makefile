@@ -1,4 +1,4 @@
-DOT_FILES = .zshenv .spacemacs
+DOT_FILES = .zshenv .spacemacs .zshrc
 
 all: install
 
