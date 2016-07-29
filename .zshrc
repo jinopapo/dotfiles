@@ -217,9 +217,5 @@ alias ls="gls --color"
 alias sl="gls --color"
 alias la="ls --color -al"
 
-PYENV_ROOT="${HOME}/.pyenv"
-PATH=${PYENV_ROOT}/bin:$PATH
 eval "$(pyenv init -)"
-RBENV_ROOT="${HOME}/.rbenv"
-PATH=${RBENV_ROOT}/bin:$PATH
 eval "$(rbenv init -)"
