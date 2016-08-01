@@ -23,27 +23,29 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ibuffer
-     global
+     ;;ibuffer
+     ;;global
      auto-completion
-     better-defaults
+     ;;better-defaults
      emacs-lisp
      git
-     markdown
-     ruby-on-rails
+     ;;markdown
+     ;;ruby-on-rails
      c-c++
-     ycmd
+     ;;ycmd
      tabbar
-     search-engine
-     private-c-c++
+     ;;search-engine
+     ;;private-c-c++
      ;;javescript
+     ;;graphviz
      ruby
      python
-     html
+     latex
+     ;;html
      org
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
+     ;;(shell :variables
+     ;;       shell-default-height 30
+     ;;       shell-default-position 'bottom)
      spell-checking
      syntax-checking
      ;; version-control
@@ -234,22 +236,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (set projectile-mode-line " Projectile")
-
-  ;;macのメタをcommandにする
-  (when (eq system-type 'darwin)
-    (setq ns-command-modifier (quote meta)))
-  ;;C-kで1行まるっと削除
-  (setq kill-whole-line t)
-  (keyboard-translate ?\C-h ?\C-?)
-  (global-set-key [f5] 'dotspacemacs/sync-configuration-layers)
-  (global-set-key [f8] 'shell-pop)
-  (global-set-key (kbd "C-x g") 'magit-status)
-  (global-set-key (kbd "C-x f") 'spacemacs/search-engine-select)
-  (global-set-key (kbd "C-x d") 'neotree-toggle)
-  (global-set-key (kbd "C-x C-d") 'neotree-dir)
-  (global-set-key (kbd "C-x j") 'neotree-find-project-root)
-  (global-set-key (kbd "C-x C-j") 'neotree-find-project-root)
 
   )
 
@@ -260,9 +246,41 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+  ;;macのメタをcommandにする
+  (when (eq system-type 'darwin)
+    (setq ns-command-modifier (quote meta)))
+  ;;C-kで1行まるっと削除
+  (setq kill-whole-line t)
+  (keyboard-translate ?\C-h ?\C-?)
+  (global-set-key [f5] 'dotspacemacs/sync-configuration-layers)
+  (global-set-key [f8] 'shell-pop)
+  (global-set-key (kbd "C-t") 'replace-string)
+  (global-set-key (kbd "C-x g") 'magit-status)
+  (global-set-key (kbd "C-x f") 'spacemacs/search-engine-select)
+  (global-set-key (kbd "C-x d") 'neotree-toggle)
+  (global-set-key (kbd "C-x C-d") 'neotree-dir)
+  (global-set-key (kbd "C-x j") 'neotree-find-project-root)
+  (global-set-key (kbd "C-x C-j") 'neotree-find-project-root)
+  (global-set-key (kbd "C-x C-b") 'helm-recentf)
+  (global-set-key (kbd "M-v") 'scroll-down)
 
+  (setq-default dotspacemacs-configuration-layers
+                '((c-c++ :variables
+                         c-c++-default-mode-for-headers 'c++-mode)))
+  (setq-default dotspacemacs-configuration-layers
+                '((c-c++ :variables c-c++-enable-clang-support t)))
 
-  )
+  (setq-default python-indent-offset 2)
+  (setq ruby-indent-level 2)
+  (defun dotspacemacs-configuration-layers ()
+    '((ruby :variables ruby-version-manager 'rbenv)))
+
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  dotspacemacs-configuration-layers '(
+                                      (latex :variables latex-build-command "LatexMk")
+                                      (latex :variables latex-enable-auto-fill t)
+                                      (latex :variables latex-enable-folding t))
+ )
 
 
 ;; Do not write anything past this comment. This is where Emacs will
