@@ -28,8 +28,8 @@ values."
      ;;better-defaults
      emacs-lisp
      git
-     ;;markdown
-     ;;ruby-on-rails
+     markdown
+     ruby-on-rails
      c-c++
      ;;ycmd
      tabbar
@@ -39,7 +39,7 @@ values."
      ruby
      python
      latex
-     ;;html
+     html
      org
      (shell :variables
             shell-default-height 30
