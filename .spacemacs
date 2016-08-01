@@ -25,7 +25,7 @@ values."
      ;; ----------------------------------------------------------------
      ;;ibuffer
      auto-completion
-     ;;better-defaults
+     better-defaults
      emacs-lisp
      git
      markdown
@@ -45,7 +45,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      ;;spell-checking
-     ;;syntax-checking
+     syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
