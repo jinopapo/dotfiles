@@ -221,4 +221,4 @@ eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 
 
-alias sshmux="~/shellscript/sshmux.sh"
+alias sshmux="~/dotfiles/shellscript/sshmux.sh"
