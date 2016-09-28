@@ -29,7 +29,7 @@ values."
      emacs-lisp
      git
      markdown
-     ruby-on-rails
+     ;;ruby-on-rails
      c-c++
      ;;ycmd
      tabbar

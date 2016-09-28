@@ -1,0 +1,7 @@
+set -g prefix C-t
+unbind C-b
+bind 3 split-window -h
+bind 2 split-window -v
+bind 2 split-window -v
+set -g default-terminal "screen-256color"
+set-window-option -g utf8 on

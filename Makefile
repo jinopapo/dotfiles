@@ -1,4 +1,4 @@
-DOT_FILES = .zshenv .spacemacs .zshrc .latexmkrc
+DOT_FILES = .zshenv .spacemacs .zshrc .latexmkrc .tmux-conf
 
 all: install
 
