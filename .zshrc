@@ -213,12 +213,17 @@ eval $(gdircolors ~/dircolors-solarized/dircolors.256dark)
 if [ -n "$LS_COLORS" ]; then
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
-alias ls="gls --color"
-alias sl="gls --color"
-alias la="ls --color -al"
+alias la="ls -al"
 
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 
 
 alias sshmux="~/dotfiles/shellscript/sshmux.sh"
+
+case "$TERM" in
+    dumb | emacs)
+	PROMPT="%m:%~> "
+	unsetopt zle
+	;;
+esac
