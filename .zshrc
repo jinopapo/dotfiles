@@ -223,7 +223,7 @@ alias sshmux="~/dotfiles/shellscript/sshmux.sh"
 
 case "$TERM" in
     dumb | emacs)
-	PROMPT="%m:%~> "
-	unsetopt zle
-	;;
+	      PROMPT="%m:%~> "
+	      unsetopt zle
+	      ;;
 esac
