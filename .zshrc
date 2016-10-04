@@ -214,6 +214,8 @@ if [ -n "$LS_COLORS" ]; then
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
+alias la="ls -al"
+
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 
