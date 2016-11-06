@@ -279,7 +279,6 @@ you should place you code here."
               ))
   (add-hook 'c++-mode-hook 'ycmd-mode)
 
-  
   (setq-default python-indent-offset 2)
   (setq ruby-indent-level 2)
   (defun dotspacemacs-configuration-layers ()
