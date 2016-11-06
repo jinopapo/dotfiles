@@ -13,7 +13,7 @@ values."
    dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.emacs.d/private/")
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
@@ -25,16 +25,24 @@ values."
      ;; ----------------------------------------------------------------
      ;;ibuffer
      auto-completion
+     syntax-checking
+     ;(auto-completion :variables
+     ;                 auto-completion-return-key-behavior 'complete
+     ;                 auto-completion-tab-key-behavior 'cycle
+     ;                 auto-completion-complete-with-key-sequence nil
+     ;                 auto-completion-complete-with-key-sequence-delay 0.1
+     ;                 auto-completion-private-snippets-directory nil)
      better-defaults
      emacs-lisp
      git
      markdown
      ruby-on-rails
-     c-c++
-     ;;ycmd
+     ycmd
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode)
      tabbar
      ;;search-engine
-     ;;javescript
+     javascript
      ;;graphviz
      ruby
      python
@@ -45,7 +53,6 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      ;;spell-checking
-     syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -260,16 +267,29 @@ you should place you code here."
   (global-set-key (kbd "C-x C-b") 'helm-recentf)
   (global-set-key (kbd "M-v") 'scroll-down)
 
-  (setq-default dotspacemacs-configuration-layers
-                '((c-c++ :variables
-                         c-c++-default-mode-for-headers 'c++-mode)))
-  (setq-default dotspacemacs-configuration-layers
-                '((c-c++ :variables c-c++-enable-clang-support t)))
+  ;;c-c++
+  (setq ycmd-server-command '("python" "/Users/ji-no/ycmd/ycmd"))
+  (add-hook 'c++-mode-hook
+            (lambda ()
+              ;; quick compilation
+              (set (make-local-variable 'compile-command)
+                   (concat "g++ -std=c++11 -Wall " buffer-file-name " && ./a.out"))
+              ;; (push 'company-semantic company-backends)
+              (setq flycheck-clang-language-standard "c++11")
+              ))
+  (add-hook 'c++-mode-hook 'ycmd-mode)
 
+  
   (setq-default python-indent-offset 2)
   (setq ruby-indent-level 2)
   (defun dotspacemacs-configuration-layers ()
-    '((ruby :variables ruby-version-manager 'rbenv)))
+    '(
+      (ruby :variables ruby-version-manager 'rbenv)
+      (org :variables
+           org-enable-github-support t)
+      ))
+
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "C-c C-c" 'org-export-dispatch)
  )
 
 ;; Do not write anything past this comment. This is where Emacs will
