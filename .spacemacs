@@ -24,14 +24,6 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;;ibuffer
-     auto-completion
-     syntax-checking
-     ;(auto-completion :variables
-     ;                 auto-completion-return-key-behavior 'complete
-     ;                 auto-completion-tab-key-behavior 'cycle
-     ;                 auto-completion-complete-with-key-sequence nil
-     ;                 auto-completion-complete-with-key-sequence-delay 0.1
-     ;                 auto-completion-private-snippets-directory nil)
      better-defaults
      emacs-lisp
      git
@@ -49,6 +41,8 @@ values."
      latex
      html
      (org :variables org-enable-github-support t)
+     auto-completion
+     syntax-checking
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -266,6 +260,7 @@ you should place you code here."
   (global-set-key (kbd "C-x C-j") 'neotree-find-project-root)
   (global-set-key (kbd "C-x C-b") 'helm-recentf)
   (global-set-key (kbd "M-v") 'scroll-down)
+  (global-company-mode)
 
   ;;c-c++
   (setq ycmd-server-command '("python" "/Users/ji-no/ycmd/ycmd"))
