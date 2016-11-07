@@ -44,11 +44,11 @@ values."
      ;;search-engine
      javascript
      ;;graphviz
-     ruby
+     (ruby :variables ruby-version-manager 'rbenv)
      python
      latex
      html
-     org
+     (org :variables org-enable-github-support t)
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -269,27 +269,24 @@ you should place you code here."
 
   ;;c-c++
   (setq ycmd-server-command '("python" "/Users/ji-no/ycmd/ycmd"))
+  (use-package cc-mode
+    :config
+    (bind-keys :map c++-mode-map
+               ("C-c c" . compile)))
   (add-hook 'c++-mode-hook
             (lambda ()
-              ;; quick compilation
               (set (make-local-variable 'compile-command)
                    (concat "g++ -std=c++11 -Wall " buffer-file-name " && ./a.out"))
-              ;; (push 'company-semantic company-backends)
-              (setq flycheck-clang-language-standard "c++11")
               ))
   (add-hook 'c++-mode-hook 'ycmd-mode)
 
   (setq-default python-indent-offset 2)
   (setq ruby-indent-level 2)
-  (defun dotspacemacs-configuration-layers ()
-    '(
-      (ruby :variables ruby-version-manager 'rbenv)
-      (org :variables
-           org-enable-github-support t)
-      ))
-
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode "C-c C-c" 'org-export-dispatch)
- )
+  (use-package org
+    :config
+    (bind-keys :map org-mode-map
+               ("C-c c" . org-export-dispatch)))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
