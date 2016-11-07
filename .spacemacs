@@ -24,7 +24,6 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;;ibuffer
-     auto-completion
      better-defaults
      emacs-lisp
      git
@@ -41,6 +40,7 @@ values."
      latex
      html
      org
+     auto-completion
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -259,13 +259,16 @@ you should place you code here."
   (global-set-key (kbd "C-x C-j") 'neotree-find-project-root)
   (global-set-key (kbd "C-x C-b") 'helm-recentf)
   (global-set-key (kbd "M-v") 'scroll-down)
+  (global-company-mode)
 
   (setq-default dotspacemacs-configuration-layers
                 '((c-c++ :variables
-                         c-c++-default-mode-for-headers 'c++-mode)))
-  (setq-default dotspacemacs-configuration-layers
-                '((c-c++ :variables c-c++-enable-clang-support t)))
-
+                         c-c++-default-mode-for-headers 'c++-mode
+                         c-c++-enable-clang-support t)
+                  (syntax-checking :variables
+                                   syntax-checking-enable-by-default nil)
+                  (auto-complete :variables
+                                 auto-completion-enable-snippets-in-popup t)))
   (setq-default python-indent-offset 2)
   (setq ruby-indent-level 2)
   (defun dotspacemacs-configuration-layers ()
