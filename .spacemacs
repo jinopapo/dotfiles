@@ -313,7 +313,32 @@ you should place you code here."
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+  (add-to-list 'org-latex-classes
+               '("resume"
+                 "\\documentclass[twocolumn,a4paper,10pt]{jarticle}
+                [NO-PACKAGES]
+                [NO-DEFAULT-PACKAGES]
+\\usepackage[dvipdfmx]{graphicx}
+\\setlength{\\columnsep}{3zw}
+\\setlength{\\textheight}{\\paperheight}
+\\setlength{\\topmargin}{-6.4truemm}
+\\addtolength{\\topmargin}{-\\headheight}
+\\addtolength{\\topmargin}{-\\headsep}
+\\addtolength{\\textheight}{-40truemm}
+\\setlength{\\textwidth}{\\paperwidth}
+\\setlength{\\oddsidemargin}{-10.4truemm}
+\\setlength{\\evensidemargin}{-10.4truemm}
+\\addtolength{\\textwidth}{-30truemm}
+
+"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+))
+
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
