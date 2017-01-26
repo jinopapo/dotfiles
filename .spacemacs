@@ -18,6 +18,8 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     yaml
+     php
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -40,6 +42,7 @@ values."
      python
      latex
      html
+     bibtex
      (org :variables org-enable-github-support t)
      auto-completion
      syntax-checking
@@ -262,6 +265,7 @@ you should place you code here."
   (global-set-key (kbd "M-v") 'scroll-down)
   (global-company-mode)
 
+  (setq truncate-lines t)
   ;;c-c++
   (setq ycmd-server-command '("python" "/Users/ji-no/ycmd/ycmd"))
   (use-package cc-mode
@@ -281,7 +285,35 @@ you should place you code here."
     :config
     (bind-keys :map org-mode-map
                ("C-c c" . org-export-dispatch)))
-  )
+  (setq org-latex-with-hyperref nil)
+  (setq org-latex-pdf-process
+        '("platex %f"
+          "dvipdfmx %b.dvi"))
+  (add-to-list 'org-latex-classes
+               '("thesis"
+                 "\\documentclass[a4paper,11pt,oneside,openany]{jsbook}
+                [NO-PACKAGES]
+                [NO-DEFAULT-PACKAGES]
+\\usepackage[dvipdfmx]{graphicx}
+\\usepackage{amsmath,amssymb}
+\\usepackage{bm}
+\\usepackage{graphicx}
+\\usepackage{subfigure}
+\\usepackage{verbatim}
+\\usepackage{wrapfig}
+\\usepackage{ascmac}
+\\usepackage{makeidx}
 
+\\setlength{\\textwidth}{\\fullwidth}
+\\setlength{\\textheight}{40\\baselineskip}
+\\addtolength{\\textheight}{\\topskip}
+\\setlength{\\voffset}{-0.55in}
+"
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
