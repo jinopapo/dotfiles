@@ -329,6 +329,10 @@ you should place you code here."
 \\setlength{\\textwidth}{\\paperwidth}
 \\setlength{\\oddsidemargin}{-15.4truemm}
 \\setlength{\\evensidemargin}{-15.4truemm}
+\\setlength\\floatsep{2truemm}
+\\setlength\\textfloatsep{5truemm}
+\\setlength\\intextsep{2truemm}
+\\setlength\\abovecaptionskip{1truemm}
 \\addtolength{\\textwidth}{-20truemm}
 
 "
