@@ -322,14 +322,14 @@ you should place you code here."
 \\usepackage[dvipdfmx]{graphicx}
 \\setlength{\\columnsep}{3zw}
 \\setlength{\\textheight}{\\paperheight}
-\\setlength{\\topmargin}{-6.4truemm}
+\\setlength{\\topmargin}{-11.4truemm}
 \\addtolength{\\topmargin}{-\\headheight}
 \\addtolength{\\topmargin}{-\\headsep}
-\\addtolength{\\textheight}{-40truemm}
+\\addtolength{\\textheight}{-30truemm}
 \\setlength{\\textwidth}{\\paperwidth}
-\\setlength{\\oddsidemargin}{-10.4truemm}
-\\setlength{\\evensidemargin}{-10.4truemm}
-\\addtolength{\\textwidth}{-30truemm}
+\\setlength{\\oddsidemargin}{-15.4truemm}
+\\setlength{\\evensidemargin}{-15.4truemm}
+\\addtolength{\\textwidth}{-20truemm}
 
 "
                  ("\\section{%s}" . "\\section*{%s}")
