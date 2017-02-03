@@ -320,7 +320,8 @@ you should place you code here."
                 [NO-PACKAGES]
                 [NO-DEFAULT-PACKAGES]
 \\usepackage[dvipdfmx]{graphicx}
-\\setlength{\\columnsep}{3zw}
+\\usepackage{here}
+\\setlength{\\columnsep}{2zw}
 \\setlength{\\textheight}{\\paperheight}
 \\setlength{\\topmargin}{-11.4truemm}
 \\addtolength{\\topmargin}{-\\headheight}
