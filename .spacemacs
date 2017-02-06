@@ -288,6 +288,10 @@ you should place you code here."
   (setq org-latex-with-hyperref nil)
   (setq org-latex-pdf-process
         '("platex %f"
+          "platex %f"
+          "bibtex %b"
+          "platex %f"
+          "platex %f"
           "dvipdfmx %b.dvi"))
   (add-to-list 'org-latex-classes
                '("thesis"
@@ -321,6 +325,7 @@ you should place you code here."
                 [NO-DEFAULT-PACKAGES]
 \\usepackage[dvipdfmx]{graphicx}
 \\usepackage{here}
+\\usepackage{nidanfloat}
 \\setlength{\\columnsep}{2zw}
 \\setlength{\\textheight}{\\paperheight}
 \\setlength{\\topmargin}{-11.4truemm}
