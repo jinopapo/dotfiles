@@ -256,6 +256,7 @@ you should place you code here."
   (global-set-key [f8] 'shell-pop)
   (global-set-key (kbd "C-t") 'replace-string)
   (global-set-key (kbd "C-x g") 'magit-status)
+  (global-set-key (kbd "C-M-g") 'grep)
   (global-set-key (kbd "C-x f") 'spacemacs/search-engine-select)
   (global-set-key (kbd "C-x d") 'neotree-toggle)
   (global-set-key (kbd "C-x C-d") 'neotree-dir)

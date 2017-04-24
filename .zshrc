@@ -227,3 +227,4 @@ case "$TERM" in
         unsetopt zle
         ;;
 esac
+export PATH="/usr/local/sbin:$PATH"
