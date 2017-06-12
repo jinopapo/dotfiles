@@ -7,61 +7,37 @@
 You should not put any user code in this function besides modifying the variable
 values."
   (setq-default
-   ;; Base distribution to use. This is a layer contained in the directory
-   ;; `+distribution'. For now available distributions are `spacemacs-base'
-   ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
-   ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '("~/.emacs.d/private/")
-   ;; List of configuration layers to load. If it is the symbol `all' instead
-   ;; of a list then all discovered layers will be installed.
+
    dotspacemacs-configuration-layers
    '(
+     git
+     auto-completion
+     spell-checking
+     syntax-checking
+     better-defaults
      yaml
      php
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ;;ibuffer
-     better-defaults
+     ibuffer
      emacs-lisp
-     git
      markdown
      ruby-on-rails
-     ycmd
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
      tabbar
-     ;;search-engine
      javascript
-     ;;graphviz
      (ruby :variables ruby-version-manager 'rbenv)
      python
-     latex
      html
-     bibtex
      (org :variables org-enable-github-support t)
-     auto-completion
-     syntax-checking
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     ;;spell-checking
-     ;; version-control
      )
-   ;; List of additional packages that will be installed without being
-   ;; wrapped in a layer. If you need some configuration for these
-   ;; packages, then consider creating a layer. You can also put the
-   ;; configuration in `dotspacemacs/user-config'.
+
    dotspacemacs-additional-packages '()
-   ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
-   ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-   ;; are declared in a layer which is not a member of
-   ;; the list `dotspacemacs-configuration-layers'. (default t)
    dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
@@ -70,8 +46,6 @@ This function is called at the very startup of Spacemacs initialization
 before layers configuration.
 You should not put any user code in there besides modifying the variable
 values."
-  ;; This setq-default sexp is an exhaustive list of all the supported
-  ;; spacemacs settings.
   (setq-default
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
@@ -204,7 +178,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers "relative"
+   dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -228,7 +202,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup "trailing"
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -267,8 +241,8 @@ you should place you code here."
   (global-company-mode)
 
   (setq truncate-lines t)
+
   ;;c-c++
-  (setq ycmd-server-command '("python" "/Users/ji-no/ycmd/ycmd"))
   (use-package cc-mode
     :config
     (bind-keys :map c++-mode-map
@@ -278,77 +252,14 @@ you should place you code here."
               (set (make-local-variable 'compile-command)
                    (concat "g++ -std=c++11 -Wall " buffer-file-name " && ./a.out"))
               ))
-  (add-hook 'c++-mode-hook 'ycmd-mode)
 
   (setq-default python-indent-offset 2)
   (setq ruby-indent-level 2)
+
   (use-package org
     :config
     (bind-keys :map org-mode-map
                ("C-c c" . org-export-dispatch)))
-  (setq org-latex-with-hyperref nil)
-  (setq org-latex-pdf-process
-        '("platex %f"
-          "platex %f"
-          "bibtex %b"
-          "platex %f"
-          "platex %f"
-          "dvipdfmx %b.dvi"))
-  (add-to-list 'org-latex-classes
-               '("thesis"
-                 "\\documentclass[a4paper,11pt,oneside,openany]{jsbook}
-                [NO-PACKAGES]
-                [NO-DEFAULT-PACKAGES]
-\\usepackage[dvipdfmx]{graphicx}
-\\usepackage{amsmath,amssymb}
-\\usepackage{bm}
-\\usepackage{graphicx}
-\\usepackage{subfigure}
-\\usepackage{verbatim}
-\\usepackage{wrapfig}
-\\usepackage{ascmac}
-\\usepackage{makeidx}
-
-\\setlength{\\textwidth}{\\fullwidth}
-\\setlength{\\textheight}{40\\baselineskip}
-\\addtolength{\\textheight}{\\topskip}
-\\setlength{\\voffset}{-0.55in}
-"
-                 ("\\chapter{%s}" . "\\chapter*{%s}")
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")))
-  (add-to-list 'org-latex-classes
-               '("resume"
-                 "\\documentclass[twocolumn,a4paper,10pt]{jarticle}
-                [NO-PACKAGES]
-                [NO-DEFAULT-PACKAGES]
-\\usepackage[dvipdfmx]{graphicx}
-\\usepackage{here}
-\\usepackage{nidanfloat}
-\\setlength{\\columnsep}{2zw}
-\\setlength{\\textheight}{\\paperheight}
-\\setlength{\\topmargin}{-11.4truemm}
-\\addtolength{\\topmargin}{-\\headheight}
-\\addtolength{\\topmargin}{-\\headsep}
-\\addtolength{\\textheight}{-30truemm}
-\\setlength{\\textwidth}{\\paperwidth}
-\\setlength{\\oddsidemargin}{-15.4truemm}
-\\setlength{\\evensidemargin}{-15.4truemm}
-\\setlength\\floatsep{2truemm}
-\\setlength\\textfloatsep{5truemm}
-\\setlength\\intextsep{2truemm}
-\\setlength\\abovecaptionskip{1truemm}
-\\addtolength{\\textwidth}{-20truemm}
-
-"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\chapter{%s}" . "\\chapter*{%s}")
-))
 
 )
 ;; Do not write anything past this comment. This is where Emacs will
