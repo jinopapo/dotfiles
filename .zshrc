@@ -78,19 +78,3 @@ alias la="ls -alhG"
 
 #環境依存
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-alias imgls="${HOME}/.iterm/imgls"
-alias imgcat="${HOME}/.iterm/imgcat"
-
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
-
-
-alias sshmux="~/dotfiles/shellscript/sshmux.sh"
-case "$TERM" in
-    dumb | emacs)
-        PROMPT="%m:%~> "
-        unsetopt zle
-        ;;
-esac
-export PATH="/usr/local/sbin:$PATH"
