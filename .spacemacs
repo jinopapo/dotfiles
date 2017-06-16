@@ -238,6 +238,7 @@ you should place you code here."
   (global-set-key (kbd "C-x C-j") 'neotree-find-project-root)
   (global-set-key (kbd "C-x C-b") 'helm-recentf)
   (global-set-key (kbd "M-v") 'scroll-down)
+  (global-set-key (kbd "M-h") 'backward-kill-word)
   (global-company-mode)
 
   (setq truncate-lines t)
